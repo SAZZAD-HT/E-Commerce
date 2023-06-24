@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Management</title>
+ 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 5px;
+      width: 200px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- admin.html -->
+<h1>Admin Registration</h1>
+<form id="adminRegistrationForm">
+  <label for="userName">Username:</label>
+  <input type="text" id="userName" required>
+  <br>
+  <label for="userEmail">Email:</label>
+  <input type="email" id="userEmail" required>
+  <br>
+  <label for="userPassword">Password:</label>
+  <input type="password" id="userPassword" required>
+  <br>
+  <label for="contact">Contact:</label>
+  <input type="text" id="contact" required>
+  <br>
+  <label for="role">Role:</label>
+  <input type="text" id="role" required>
+  <br>
+  <label for="status">Status:</label>
+  <input type="text" id="status" required>
+  <br>
+  <label for="description">Description:</label>
+  <input type="text" id="description" required>
+  <br>
+  <label for="mobileNumber">Mobile Number:</label>
+  <input type="number" id="mobileNumber" required>
+  <br>
+  <button type="submit">Register</button>
+</form>
+
+<script>
+  const registerForm = document.getElementById('adminRegistrationForm');
+
+  registerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const userName = document.getElementById('userName').value;
+    const userEmail = document.getElementById('userEmail').value;
+    const userPassword = document.getElementById('userPassword').value;
+    const contact = document.getElementById('contact').value;
+    const role = document.getElementById('role').value;
+    const status = document.getElementById('status').value;
+    const description = document.getElementById('description').value;
+    const mobileNumber = document.getElementById('mobileNumber').value;
+
+    const adminData = {
+      UserName: userName,
+      UserEmail: userEmail,
+      UserPassword: userPassword,
+      Contact: contact,
+      Role: role,
+      Status: status,
+      Description: description,
+      MobileNumber: mobileNumber,
+    };
+
+    const response = await fetch('http://localhost:30022/user/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(adminData),
+    });
+
+    if (response.ok) {
+      alert('Admin registered successfully!');
+      registerForm.reset();
+    } else {
+      alert('Failed to register admin!');
+    }
+  });
+</script>
+
+</body>
+</html>
