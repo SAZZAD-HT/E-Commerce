@@ -33,17 +33,18 @@ export class UserController {
     
     @Delete('/delete/:id')
     async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        console.log("delete"+id);
         await this.AdminService.delete(id);
     }
 
-    @Get('/login')
-    async login(@Query('email') email: string, @Query('password') password: string, @Session() session: any): Promise<User> {
-        const user = await this.AdminService.login(email, password);
-        if (user) {
-            session.user = user;
-            return user;
-        }
-        throw new UnauthorizedException();
+    @Post('/login')
+    async login(@Body() loginData: { UserEmail: string; UserPassword: string }) {
+      try {
+        const token = await this.AdminService.login(loginData);
+        return { success: true, token };
+      } catch (error) {
+        return { success: false, message: error.message };
+      }
     }
 
 

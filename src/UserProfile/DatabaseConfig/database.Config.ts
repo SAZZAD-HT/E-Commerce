@@ -15,7 +15,7 @@ import { UserController } from '../AdminController';
         port: 3306,
         username: 'root',
         password: 'sazzad',
-        database: 'Test',
+        database: 'Test1',
         entities: [User],
         synchronize: false,
 	}),TypeOrmModule.forFeature([User])
@@ -24,4 +24,5 @@ import { UserController } from '../AdminController';
   controllers: [UserController]
 
 })
+
 export class DatabaseModulemosque {}
