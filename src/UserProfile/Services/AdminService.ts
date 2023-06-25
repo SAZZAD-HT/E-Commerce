@@ -34,16 +34,20 @@ export class AdminService {
     }
     async login(loginData: { UserEmail: string; UserPassword: string }): Promise<string> {
         const { UserEmail, UserPassword } = loginData;
+        if(loginData==null){
+            console.log("nodata");
+        }
+        console.log("login Service");
         console.log(loginData);
         const admin = await this.repo.findOne({ where: { UserEmail }, select: ['UserId', 'UserPassword'] });
-    console.log(admin);
+   
         if (!admin) {
-          throw new Error('Invalid credentials');
+          throw new Error('Logged ');
         }
     console.log(admin.UserPassword+" "+UserPassword)
         if (admin.UserPassword !== UserPassword) {
 
-          throw new Error('Invalid credentials');
+          throw new Error('Login Successful');
         }
     
        

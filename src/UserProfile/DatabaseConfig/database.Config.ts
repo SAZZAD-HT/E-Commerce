@@ -15,7 +15,7 @@ import { UserController } from '../AdminController';
         port: 3306,
         username: 'root',
         password: 'sazzad',
-        database: 'Test1',
+        database: 'ecommerce',
         entities: [User],
         synchronize: false,
 	}),TypeOrmModule.forFeature([User])

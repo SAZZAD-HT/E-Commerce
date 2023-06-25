@@ -39,6 +39,8 @@ export class UserController {
 
     @Post('/login')
     async login(@Body() loginData: { UserEmail: string; UserPassword: string }) {
+      console.log(loginData);
+      console.log("login");
       try {
         const token = await this.AdminService.login(loginData);
         return { success: true, token };
