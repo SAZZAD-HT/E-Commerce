@@ -8,8 +8,7 @@ import { User } from './Entity/Admin';
 export class UserController {
 
    
-    constructor(private readonly AdminService: AdminService
-         ) {}
+    constructor(private readonly AdminService: AdminService) {}
     
     @Get()
     async findAll(): Promise<User[]> {
