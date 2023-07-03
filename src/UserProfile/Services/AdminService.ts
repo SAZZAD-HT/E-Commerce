@@ -17,7 +17,17 @@ export class AdminService {
         var data=await this.repo.find();
         return data;
     }
+    async findeOne(UserId: number): Promise<User> {
+        return await this.repo.findOneBy({UserId});
+    }
     
+    async findemail(UserEmail: string): Promise<User> {
+        return await this.repo.findOneBy({UserEmail});
+    }
+    async findpassword(UserPassword: string): Promise<User> {
+        return await this.repo.findOneBy({UserPassword});
+    }
+
    
 
     async create(user: AddUserDto): Promise<User> {
@@ -32,24 +42,4 @@ export class AdminService {
         console.log("delete Service"+id);
         await this.repo.delete(id);
     }
-    async login(loginData: { UserEmail: string; UserPassword: string }): Promise<string> {
-        const { UserEmail, UserPassword } = loginData;
-        if(loginData==null){
-            console.log("nodata");
-        }
-        console.log("login Service");
-        console.log(loginData);
-        const admin = await this.repo.findOne({ where: { UserEmail }, select: ['UserId', 'UserPassword'] });
-   
-        if (!admin) {
-          throw new Error('Logged ');
-        }
-    console.log(admin.UserPassword+" "+UserPassword)
-        if (admin.UserPassword !== UserPassword) {
-
-          throw new Error('Login Successful');
-        }
-    
-       
-        return admin.UserId.toString();
-      }}
+    }

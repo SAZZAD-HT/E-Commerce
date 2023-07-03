@@ -2,10 +2,12 @@ import {  Body,  Controller,  Delete,  FileTypeValidator,  Get,  MaxFileSizeVali
 import { AdminService } from './Services/AdminService';
 import { AddUserDto } from './Dto/Admindd';
 import { User } from './Entity/Admin';
+import * as session from 'express-session';
+import {Request,Response} from 'express';
 
 
 @Controller('user')
-export class UserController {
+export class AdminController {
 
    
     constructor(private readonly AdminService: AdminService) {}
@@ -36,16 +38,6 @@ export class UserController {
         await this.AdminService.delete(id);
     }
 
-    @Post('/login')
-    async login(@Body() loginData: { UserEmail: string; UserPassword: string }) {
-      console.log(loginData);
-      console.log("login");
-      try {
-        const token = await this.AdminService.login(loginData);
-        return { success: true, token };
-      } catch (error) {
-        return { success: false, message: error.message };
-      }
     }
 
 
@@ -56,4 +48,3 @@ export class UserController {
 
 
     
-}
