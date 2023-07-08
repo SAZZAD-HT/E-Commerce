@@ -12,11 +12,11 @@ export class  ProductController {
    
     constructor(private readonly AdminService: ProductService) {}
     
-    @Get('all')
+    @Get('')
     async findAll(): Promise< ProductEntity[]> {
         return await this.AdminService.findAll();
     }
-    @Get('all/:id')
+    @Get('/:id')
     async findOne(@Param('id', ParseIntPipe) id: number): Promise< ProductEntity> {
         return await this.AdminService.find(id);
     }

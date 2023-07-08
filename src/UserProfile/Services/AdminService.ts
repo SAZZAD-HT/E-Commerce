@@ -63,7 +63,7 @@ export class AdminService {
         }else if(user.Role=="mechanic"){
            
 
-            console.log("umechanicr");
+            console.log("mechanic");
             return user;}
             else if(user.Role=="user"){
            

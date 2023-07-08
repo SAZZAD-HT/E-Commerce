@@ -17,10 +17,14 @@ export class AdminController {
     async findAll(): Promise<User[]> {
         return await this.AdminService.findAll();
     }
+    @Get('/:id')
+    async findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
+        return await this.AdminService.findOne(id);
+    }
     
    
     
-    @Post('/register')
+    @Post('/create')
     async create(@Body() user: AddUserDto): Promise<User> {
         console.log("Controller"+user);
         return await this.AdminService.create(user);

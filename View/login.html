@@ -190,7 +190,7 @@
         UserPassword
       };
 
-      const response = await fetch('http://localhost:3002/user/signin', {
+      const response = await fetch('http://localhost:3000/user/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -198,10 +198,27 @@
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        alert('Logged in successfully');
-        //const sessionId = responseData.sessionId;
-        window.location.href = './update.html'
+      if (response.ok) { 
+        const responseData = await response.json(); // Parse the response body as JSON
+    console.log(responseData);
+             alert('Logged in successfully');
+       
+        console.log(responseData.Role+"response");
+          
+ 
+        if(responseData.Role == 'admin'){ 
+          alert('Logged in successfully'+response);
+          window.location.href = './adminHome.html'}
+        else if(responseData.Role == 'user'){
+          alert('Logged in successfully'+responseData.Role);
+          window.location.href = './user.html'
+
+        }else{
+          alert('PAGE IS UNDER CONSTRUCTION'+responseData.Role);
+          window.location.href = './index.html'
+
+        }
+       
       } else {
         alert('Failed to log in');
       }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin Management</title>
+  <title>ADD Product</title>
  
   <style>
    body {
@@ -101,40 +101,38 @@
 </head>
 <body>
   <!-- admin.html -->
-<h1>Admin Registration</h1>
+<h1>Adding Product </h1>
 <form id="adminRegistrationForm">
-  <label for="userName">Username:</label>
-  <input type="text" id="userName" required>
+  <label for="userName">ProductId</label>
+  <input type="number" id="userName" required>
   <br>
-  <label for="userEmail">Email:</label>
-  <input type="email" id="userEmail" required>
+  <label for="userEmail"> ProductName</label>
+  <input type="text" id="userEmail" required>
   <br>
-  <label for="userPassword">Password:</label>
-  <input type="password" id="userPassword" required>
+  <label for="userPassword"> ProductDescription</label>
+  <input type="text" id="userPassword" required>
   <br>
-  <label for="contact">Address:</label>
-  <input type="text" id="contact" required>
-  <label for="role">Role:</label>
-<select id="role" required>
-  <option value="admin">Admin</option>
-  <option value="user">User</option>
-  <option value="mechanic">Mechanic</option>
-  <option value="shopper">Shopper</option>
-</select>
-<br>
-  <label for="status">Status:</label>
+  <label for="contact">ProductPrice</label>
+  <input type="number" id="contact" required>
+  <label for="role">  ProductImage</label>
+<input type="text"id="role" required>
   
-  <select id="status" required>
-    <option value="admin">Active</option>
-    <option value="user">NotActive</option>
-   
-  </select>
+<br>
+  <label for="status">ProductCategory</label>
+  <input type="text" id="status" required>
   <br>
-  <label for="description">Description:</label>
-  <input type="text" id="description" required>
+  <label for="description">ProductQuantity</label>
+  <input type="number" id="description" required>
   <br>
-  <label for="mobileNumber">Mobile Number:</label>
-  <input type="number" id="mobileNumber" required>
+  <label for="mobileNumber"> ProductStatus:</label>
+  <input type="text" id="mobileNumber" required>
+  <br>
+  <br>
+  <label for="ProductRating"> ProductRating</label>
+  <input type="number" id="ProductRating" required>
+  <br> <br>
+  <label for=" ProductReview">  ProductReview</label>
+  <input type="text" id="ProductReview" required>
   <br>
   <button type="submit">Register</button>
 </form>
@@ -153,19 +151,23 @@
     const status = document.getElementById('status').value;
     const description = document.getElementById('description').value;
     const mobileNumber = document.getElementById('mobileNumber').value;
-
+    const mo = document.getElementById('ProductRating').value;
+  const mob = document.getElementById('ProductReview').value;
     const adminData = {
-      UserName: userName,
-      UserEmail: userEmail,
-      UserPassword: userPassword,
-      Contact: contact,
-      Role: role,
-      Status: status,
-      Description: description,
-      MobileNumber: mobileNumber,
+      ProductId: userName,
+      ProductName: userEmail,
+      ProductDescription: userPassword,
+      ProductPrice: contact,
+      ProductImage: role,
+      ProductCategory: status,
+      ProductQuantity: description,
+      ProductStatus: mobileNumber,
+      ProductRating:mo,
+      ProductReview:mob
+
     };
 
-    const response = await fetch('http://localhost:3000/user/create', {
+    const response = await fetch('http://localhost:3000/Product/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -174,8 +176,8 @@
     });
 
     if (response.ok) {
-      alert('Admin registered successfully!');
-      window.location.href = './Home/index.html';
+      alert(' registered successfully!');
+      
       registerForm.reset();
     } else {
       alert('Failed to register admin!');
