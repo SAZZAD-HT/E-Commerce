@@ -13,7 +13,13 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
-  app.enableCors(); // Add this line
-  await app.listen(3002);
+  app.enableCors();
+  app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow requests from any origin (replace * with the specific origin if needed)
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow the HTTP methods used in your request
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow the necessary headers
+    next();
+  }); // Add this line
+  await app.listen(3000);
 }
 bootstrap();

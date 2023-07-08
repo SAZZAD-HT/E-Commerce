@@ -16,6 +16,10 @@ export class  ProductController {
     async findAll(): Promise< ProductEntity[]> {
         return await this.AdminService.findAll();
     }
+    @Get('all/:id')
+    async findOne(@Param('id', ParseIntPipe) id: number): Promise< ProductEntity> {
+        return await this.AdminService.find(id);
+    }
     
    
     

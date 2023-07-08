@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
-import { AddUserDto } from '../Dto/Admindd';
+import { AddUserDto, UpdateUserDto } from '../Dto/Admindd';
 import { User } from '../Entity/Admin';
 
 @Injectable()
@@ -17,7 +17,7 @@ export class AdminService {
         var data=await this.repo.find();
         return data;
     }
-    async findeOne(UserId: number): Promise<User> {
+    async findOne(UserId: number): Promise<User> {
         return await this.repo.findOneBy({UserId});
     }
     
@@ -34,12 +34,44 @@ export class AdminService {
         return await this.repo.save(user);
     }
     
-    async update(id: number, user: User): Promise<void> {
+    async update(id: number, user: UpdateUserDto): Promise<void> {
         await this.repo.update(id, user);
     }
     
     async delete(id: number): Promise<void> {
         console.log("delete Service"+id);
         await this.repo.delete(id);
+    }
+    async signin(email: string, password: string) {
+        
+        
+        const user = await this.findemail(email);
+        if (!user) {
+            console.log("User not found");
+            throw new NotFoundException('User not found');
+        }
+        if (user.UserPassword !== password) {
+            
+            console.log("Invalid password");
+            throw new BadRequestException('Invalid password');
+        }
+        if(user.Role=="admin"){
+            
+            
+            console.log("admin");
+            return user;
+        }else if(user.Role=="mechanic"){
+           
+
+            console.log("umechanicr");
+            return user;}
+            else if(user.Role=="user"){
+           
+
+                console.log("mosjid");
+                return user;}
+
+        ;
+
     }
     }

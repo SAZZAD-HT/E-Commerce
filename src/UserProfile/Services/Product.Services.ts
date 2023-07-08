@@ -30,6 +30,9 @@ export class ProductService {
         console.log("delete Service"+id);
         await this.repo.delete(id);
     }
+    async find(ProductId: number): Promise<ProductEntity> {
+        return await this.repo.findOneBy({ProductId});
+    }
    
 }
 

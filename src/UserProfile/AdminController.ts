@@ -1,9 +1,10 @@
 import {  Body,  Controller,  Delete,  FileTypeValidator,  Get,  MaxFileSizeValidator,  Param,  ParseFilePipe,  ParseIntPipe,  Patch,  Post,  Put,  Query,  Res,  Session,  UnauthorizedException,  UploadedFile,  UseGuards,  UseInterceptors,  UsePipes,  ValidationPipe,} from '@nestjs/common';
 import { AdminService } from './Services/AdminService';
-import { AddUserDto } from './Dto/Admindd';
+import { AddUserDto, LoginUserDto, UpdateUserDto } from './Dto/Admindd';
 import { User } from './Entity/Admin';
 import * as session from 'express-session';
 import {Request,Response} from 'express';
+import { AuthGuard } from './Authgourd/AuthGurd';
 
 
 @Controller('user')
@@ -12,7 +13,7 @@ export class AdminController {
    
     constructor(private readonly AdminService: AdminService) {}
     
-    @Get()
+    @Get('/all')
     async findAll(): Promise<User[]> {
         return await this.AdminService.findAll();
     }
@@ -26,17 +27,45 @@ export class AdminController {
     }
 
 
-    
+    //@UseGuards(AuthGuard)
     @Put('/update/:id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() user: User): Promise<void> {
+    async update(@Param('id', ParseIntPipe) id: number, @Body() user:UpdateUserDto ): Promise<void> {
         await this.AdminService.update(id, user);
     }
-    
+   // @UseGuards(AuthGuard)
     @Delete('/delete/:id')
     async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
         console.log("delete"+id);
         await this.AdminService.delete(id);
+    } 
+    @Post('/signin')
+    async signin(@Body() body: LoginUserDto, @Session() session: any) {
+      const user = await this.AdminService.signin(body. UserEmail, body. UserPassword);
+
+      session.userId = user.UserId;
+      console.log("signin"+session.userId);
+      return user;
     }
+    
+
+
+    @Post('/signout')
+   logout(@Session() session: any) {
+    console.log("logout"+session.userId);
+     session.userId = null;
+     session.destroy();
+     console.log("logout"+session.userId);
+     return { message: 'Signout successful' };
+   }
+   //http://localhost:3002/user/profile
+   @Get('/profile')
+   async profile(@Session() session: Record<string, any>) {
+     if (!session.userId) {
+       throw new UnauthorizedException('User is not logged in');
+     }
+     const user = await this.AdminService.findOne(session.userId);
+     return user + "profile";
+   }
 
     }
 

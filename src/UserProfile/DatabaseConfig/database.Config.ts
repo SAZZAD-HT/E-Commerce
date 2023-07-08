@@ -11,8 +11,8 @@ import { AdminController } from '../AdminController';
 import { ProductEntity } from '../Entity/Product.Entity';
 import { ProductService } from '../Services/Product.Services';
 import { ProductController } from '../ProductController';
-import { AuthService } from '../Services/Login.service';
-import { AuthController } from '../AuthController';
+
+import { AuthGuard } from '../Authgourd/AuthGurd';
 
 
 
@@ -29,8 +29,8 @@ import { AuthController } from '../AuthController';
         synchronize: false,
 	}),TypeOrmModule.forFeature([User,ProductEntity])
 	],
-  providers: [AdminService,ProductService,AuthService],
-  controllers: [AdminController,ProductController,AuthController]
+  providers: [AdminService,ProductService,AuthGuard],
+  controllers: [AdminController,ProductController],
 
 })
 

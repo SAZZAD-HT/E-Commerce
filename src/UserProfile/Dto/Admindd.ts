@@ -47,6 +47,7 @@ export class LoginUserDto {
     UserPassword: string;
 }
 export class UpdateUserDto {    
+    userId: number; 
     @IsNotEmpty()
     @MaxLength(530)
     @MinLength(33)

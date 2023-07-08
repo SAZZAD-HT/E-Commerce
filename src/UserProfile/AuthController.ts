@@ -6,7 +6,7 @@ import { AdminService } from './Services/AdminService';
 
 @Controller('auth')
 export class AuthController {
-constructor(private auth: AuthService,private authadmin: AdminService){}
+constructor(private auth: AuthService){}
    // @UseGuards(Au)
    
    @Post('/signin')
@@ -21,7 +21,7 @@ constructor(private auth: AuthService,private authadmin: AdminService){}
   }
   @Get('/profile')
   profile(@Session() session: any) {
-    return this.authadmin.findeOne(session.userId);
+    return this.auth.findeOne(session.userId);
   }
 
 
