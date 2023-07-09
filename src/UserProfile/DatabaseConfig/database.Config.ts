@@ -13,6 +13,8 @@ import { ProductService } from '../Services/Product.Services';
 import { ProductController } from '../ProductController';
 
 import { AuthGuard } from '../Authgourd/AuthGurd';
+import { CartController } from '../CartController';
+import { CartService } from '../Services/cartservice';
 
 
 
@@ -29,8 +31,8 @@ import { AuthGuard } from '../Authgourd/AuthGurd';
         synchronize: false,
 	}),TypeOrmModule.forFeature([User,ProductEntity])
 	],
-  providers: [AdminService,ProductService,AuthGuard],
-  controllers: [AdminController,ProductController],
+  providers: [AdminService,ProductService,AuthGuard,CartService],
+  controllers: [AdminController,ProductController,CartController],
 
 })
 
