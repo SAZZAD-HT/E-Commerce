@@ -20,8 +20,10 @@ import { tblPurchaseDetails } from '../Entity/tblPurchaseDetails';
 import { tblSales } from '../Entity/tblSales';
 import { tblSalesDetails } from '../Entity/tblSalesDetails';
 import { CustomerService } from '../Services/Customerservices';
-import { EController } from '../Services/Econtroller';
+import { EController } from '../Econtroller';
 import { tblMechanic } from '../Entity/Mechanic';
+import { MechanicService } from '../Services/Mechanicservices';
+import { MechanicController } from '../MechanicController';
 @Module({
 	imports:[
 	TypeOrmModule.forRoot({
@@ -33,11 +35,11 @@ import { tblMechanic } from '../Entity/Mechanic';
         database: 'final',
         //entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
         autoLoadEntities: true,
-        synchronize: false,
+        synchronize: true,
 	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic])
 	],
-  providers: [AdminService,ProductService,AuthGuard,CartService,CustomerService],
-  controllers: [AdminController,ProductController,CartController,EController],
+  providers: [AdminService,ProductService,AuthGuard,CartService,CustomerService,MechanicService],
+  controllers: [AdminController,ProductController,CartController,EController,MechanicController],
 
 })
 

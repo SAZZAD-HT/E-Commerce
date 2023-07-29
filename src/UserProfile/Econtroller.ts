@@ -1,17 +1,17 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 
-import { PartnerTypeDto } from '../Dto/PartnerType';
-import { PartnerDto } from '../Dto/ParnterDto';
-import { ItemDto } from '../Dto/ItemDto';
-import { PurchaseDto } from '../Dto/PurchaseDto';
-import { SalesDto } from '../Dto/SalesDto';
-import { DailyShowDto } from '../Dto/DailyShowDto';
-import { ReportDto } from '../Dto/ReportDto';
-import { ReportTable } from '../Dto/ReportTable';
-import { CustomerService } from './Customerservices';
-import { tblPartnerType } from '../Entity/tblPartnerType';
-import { tblPartner } from '../Entity/tblPartner';
-import { tblItem } from '../Entity/tblItem';
+import { PartnerTypeDto } from './Dto/PartnerType';
+import { PartnerDto } from './Dto/ParnterDto';
+import { ItemDto } from './Dto/ItemDto';
+import { PurchaseDto } from './Dto/PurchaseDto';
+import { SalesDto } from './Dto/SalesDto';
+import { DailyShowDto } from './Dto/DailyShowDto';
+import { ReportDto } from './Dto/ReportDto';
+import { ReportTable } from './Dto/ReportTable';
+import { CustomerService } from './Services/Customerservices';
+import { tblPartnerType } from './Entity/tblPartnerType';
+import { tblPartner } from './Entity/tblPartner';
+import { tblItem } from './Entity/tblItem';
 
 @Controller('Ecommerce')
 export class EController {
