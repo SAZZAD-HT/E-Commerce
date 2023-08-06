@@ -24,6 +24,10 @@ import { EController } from '../Econtroller';
 import { tblMechanic } from '../Entity/Mechanic';
 import { MechanicService } from '../Services/Mechanicservices';
 import { MechanicController } from '../MechanicController';
+import { SellsEntity } from '../Entity/selltable';
+import { ProfitEntity } from '../Entity/ProfitTable';
+import { SelsController } from '../sellsController';
+import { SellService } from '../Services/SellService';
 @Module({
 	imports:[
 	TypeOrmModule.forRoot({
@@ -36,11 +40,12 @@ import { MechanicController } from '../MechanicController';
         //entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
         autoLoadEntities: true,
         synchronize: true,
-	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic])
+	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic,SellsEntity,ProfitEntity])
 	],
-  providers: [AdminService,ProductService,AuthGuard,CartService,CustomerService,MechanicService],
-  controllers: [AdminController,ProductController,CartController,EController,MechanicController],
+  providers: [AdminService,ProductService,AuthGuard,CartService,CustomerService,MechanicService,SellService],
+  controllers: [AdminController,ProductController,CartController,EController,MechanicController,SelsController],
 
 })
+
 
 export class DatabaseModulemosque {}

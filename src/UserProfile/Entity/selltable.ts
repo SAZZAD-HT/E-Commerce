@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 
 @Entity()
-export class ProductEntity {
-  @PrimaryGeneratedColumn('identity')
+export class SellsEntity {
+  @PrimaryGeneratedColumn()
     ProductId: number;
     @Column()
     ProductName:string
@@ -17,18 +17,16 @@ export class ProductEntity {
     ProductCategory:string
     @Column()
     ProductQuantity:number
-    @Column()
-    ProductStatus:string
-    @Column()
-    ProductRating:number
-    @Column()
-    ProductReview:string
     @Column({ nullable: true })
     Buyingrice:number
     @Column({ nullable: true })
     BuyingDate:Date
     @Column({ nullable: true })
-    Stocks:number 
+    Sellingrice:number
+    @Column({ nullable: true })
+    SellingDate:Date
+    
+
     
     
 

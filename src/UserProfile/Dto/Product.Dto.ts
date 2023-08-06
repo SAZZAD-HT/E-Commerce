@@ -1,26 +1,34 @@
-import { IsNotEmpty,IsNumber,MaxLength,MinLength,Length,IsEmail,IsOptional } from "class-validator";
 
 export class ProductDto {
-    
-    @IsNumber()
-    ProductId: number;
-     
+  
+    ProductID: number
+       
     ProductName:string
-     
+       
     ProductDescription:string
-     @IsNumber()
-    ProductPrice:Number
-     
+       
+    ProductPrice:number
+       
     ProductImage:string
-     
+       
     ProductCategory:string
-     @IsNumber()
-    ProductQuantity:Number
-     
+       
+    ProductQuantity:number
+       
     ProductStatus:string
-     @IsNumber()
-    ProductRating:Number
-     
+       
+    ProductRating:number
+       
     ProductReview:string
     
+    Buyingrice:number
+    
+    BuyingDate:Date
+    
+    Stocks:number 
+    
+    
+
+
+  
 }

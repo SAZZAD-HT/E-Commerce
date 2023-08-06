@@ -16,18 +16,10 @@ export class  ProductController {
     async findAll(): Promise< ProductEntity[]> {
         return await this.AdminService.findAll();
     }
-    @Get('/:id')
-    async findOne(@Param('id', ParseIntPipe) id: number): Promise< ProductEntity> {
-        return await this.AdminService.find(id);
-    }
     
    
     
-    @Post('/add')
-    async create(@Body()  ProductEntity:  ProductDto): Promise< ProductEntity> {
-        console.log("Controller"+ ProductEntity);
-        return await this.AdminService.create( ProductEntity);
-    }
+ 
 
 
     
