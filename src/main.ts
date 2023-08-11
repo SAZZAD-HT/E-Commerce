@@ -20,6 +20,6 @@ async function bootstrap() {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow the necessary headers
     next();
   }); // Add this line
-  await app.listen(3002);
+  await app.listen(3000);
 }
 bootstrap();

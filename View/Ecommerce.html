@@ -76,7 +76,7 @@
     </footer>
     <script >
        document.addEventListener("DOMContentLoaded", () => {
-    fetch("http://localhost:3002/sells/products")
+    fetch("http://localhost:3000/sells/products")
         .then((response) => response.json())
         .then((data) => displayProducts(data))
         .catch((error) => console.error(error));
@@ -131,7 +131,7 @@
             ProductQuantity: productQuantity
         };
 
-        fetch("http://localhost:3002/sells/sell", {
+        fetch("http://localhost:3000/sells/sell", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -10,6 +10,7 @@ export class CartController {
 
     @Post('/add')
     async addtocart(@Body() product:CartDto){
+      console.log(product);
         return this.appService.addtocart(product);
     }
     // @Get()

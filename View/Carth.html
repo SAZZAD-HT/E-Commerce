@@ -244,8 +244,10 @@
           alert('Checkout successful!');
 
           // Clear the cart
-          cart = [];
+          
+          console.log(cart);
           window.location.href = './cheackout.html'
+          cart = [];
           
           updateCart();
 

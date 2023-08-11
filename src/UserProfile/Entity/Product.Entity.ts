@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 
+
 @Entity()
 export class ProductEntity {
   @PrimaryGeneratedColumn('identity')
@@ -29,9 +30,4 @@ export class ProductEntity {
     BuyingDate:Date
     @Column({ nullable: true })
     Stocks:number 
-    
-    
-
-
-  
 }
