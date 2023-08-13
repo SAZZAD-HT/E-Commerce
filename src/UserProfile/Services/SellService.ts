@@ -33,6 +33,32 @@ export class SellService {
         var data = await this.profit.find();
         return data;
     }
+    async CountTotalProduct(): Promise<number> {
+        var data = await this.product.count();
+        return data;
+    }
+    async CountTotalSelled(): Promise<number> {
+        var data = await this.sell.count();
+        return data;
+    }
+    async totalProfit(): Promise<number> {
+        var data = await this.profit.find();
+        var total = 0;
+        for (let i = 0; i < data.length; i++) {
+            total = total + data[i].Profit;
+        }
+        return total;
+    }
+    async totalLoss(): Promise<number> {
+        var data = await this.profit.find();
+        var total = 0;
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].ProfitorLoss == "Loss") {
+                total = total + data[i].Profit;
+            }
+        }
+        return total;
+    }
 
     async sellproduct(sell:SellsDto) {
         var product = await this.product.findOne({ where: { ProductId: sell.ProductId } });

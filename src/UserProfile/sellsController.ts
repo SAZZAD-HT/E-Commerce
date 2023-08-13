@@ -54,4 +54,24 @@ export class SelsController {
   async getPurchasesByDate(@Param('date') date: Date) {
     return this.adminService.getpurchasebydate(date);
   }
+
+  @Get('/total-product')
+  async totalProduct() {
+    return this.adminService.CountTotalProduct();
+  }
+  @Get('/total-selled')
+  async totalSelled() {
+    return this.adminService.CountTotalSelled();
+
+  }
+  @Get('/total-Profit')
+  async totalProfit1() {
+    return this.adminService.totalProfit();
+  }
+  @Get('/total-Loss')
+  async totalLoss1() {
+    return this.adminService.totalLoss();
+  }
+ 
+    
 }

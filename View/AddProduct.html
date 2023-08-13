@@ -1,190 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>ADD Product</title>
- 
-  <style>
-   body {
-    font-family: Arial, sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
 
-  h1 {
-    color: #333;
-    text-align: center;
-    text-shadow: 2px 2px 5px #03e9f4;
-  }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-  button:hover {
-    background-color: #03e9f4;
-  }
+        .form-container {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
 
-  li {
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
 
-  form {
-    margin: 0 auto;
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 5px #03e9f4;
-  }
+        input:focus,
+        textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="password"] {
-    padding: 5px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button[type="submit"]:hover {
-    background-color: #03e9f4;
-  }
-
-  .glow {
-    animation: glowing 2s infinite;
-  }
-
-  @keyframes glowing {
-    0% {
-      box-shadow: 0 0 5px #b3200d, 0 0 25px #08e008, 0 0 50px #0c0c0c, 0 0 100px #a6b613;
-    }
-
-    50% {
-      box-shadow: 0 0 20px #f4030f, 0 0 50px #0f8f96, 0 0 100px #2703f4, 0 0 200px #06c25b;
-    }
-
-    100% {
-      box-shadow: 0 0 5px #f40303, 0 0 25px #0a0f0f, 0 0 50px #cef6f8, 0 0 100px #b30966;
-    }
-  }
-  </style>
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-  <!-- admin.html -->
-<h1>Adding Product </h1>
-<form id="adminRegistrationForm">
-  <label for="userName">ProductId</label>
-  <input type="number" id="userName" required>
-  <br>
-  <label for="userEmail"> ProductName</label>
-  <input type="text" id="userEmail" required>
-  <br>
-  <label for="userPassword"> ProductDescription</label>
-  <input type="text" id="userPassword" required>
-  <br>
-  <label for="contact">ProductPrice</label>
-  <input type="number" id="contact" required>
-  <label for="role">  ProductImage</label>
-<input type="text"id="role" required>
-  
-<br>
-  <label for="status">ProductCategory</label>
-  <input type="text" id="status" required>
-  <br>
-  <label for="description">ProductQuantity</label>
-  <input type="number" id="description" required>
-  <br>
-  <label for="mobileNumber"> ProductStatus:</label>
-  <input type="text" id="mobileNumber" required>
-  <br>
-  <br>
-  <label for="ProductRating"> ProductRating</label>
-  <input type="number" id="ProductRating" required>
-  <br> <br>
-  <label for=" ProductReview">  ProductReview</label>
-  <input type="text" id="ProductReview" required>
-  <br>
-  <button type="submit">Register</button>
-</form>
+    <div class="container">
+        <div class="header">
+            <h1>Add Product</h1>
+        </div>
+        <div class="form-container">
+            <form id="productForm">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" name="productName" required>
 
-<script>
-  const registerForm = document.getElementById('adminRegistrationForm');
+                <label for="productDescription">Product Description</label>
+                <textarea id="productDescription" name="productDescription" required></textarea>
 
-  registerForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+                <label for="productPrice">Product Price</label>
+                <input type="number" id="productPrice" name="productPrice" required>
 
-    const userName = document.getElementById('userName').value;
-    const userEmail = document.getElementById('userEmail').value;
-    const userPassword = document.getElementById('userPassword').value;
-    const contact = document.getElementById('contact').value;
-    const role = document.getElementById('role').value;
-    const status = document.getElementById('status').value;
-    const description = document.getElementById('description').value;
-    const mobileNumber = document.getElementById('mobileNumber').value;
-    const mo = document.getElementById('ProductRating').value;
-  const mob = document.getElementById('ProductReview').value;
-    const adminData = {
-      ProductId: userName,
-      ProductName: userEmail,
-      ProductDescription: userPassword,
-      ProductPrice: contact,
-      ProductImage: role,
-      ProductCategory: status,
-      ProductQuantity: description,
-      ProductStatus: mobileNumber,
-      ProductRating:mo,
-      ProductReview:mob
+                <label for="productQuantity">Product Quantity</label>
+                <input type="number" id="productQuantity" name="productQuantity" required>
 
-    };
+                <label for="buyingPrice">Buying Price</label>
+                <input type="number" id="buyingPrice" name="buyingPrice" required>
 
-    const response = await fetch('http://localhost:3000/Product/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(adminData),
-    });
+                <label for="sellingPrice">Selling Price</label>
+                <input type="number" id="sellingPrice" name="sellingPrice" required>
 
-    if (response.ok) {
-      alert(' registered successfully!');
+                <label for="sellingDate">Selling Date</label>
+                <input type="date" id="sellingDate" name="sellingDate" required>
+
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productForm = document.getElementById('productForm');
+
+            productForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const productName = document.getElementById('productName').value;
+                const productDescription = document.getElementById('productDescription').value;
+                const productPrice = document.getElementById('productPrice').value;
+                const productQuantity = document.getElementById('productQuantity').value;
+                const buyingPrice = document.getElementById('buyingPrice').value;
+                const sellingPrice = document.getElementById('sellingPrice').value;
+                const sellingDate = document.getElementById('sellingDate').value;
+
+                const payload = {
+                    productName,
+                    productDescription,
+                    productPrice,
+                    productQuantity,
+                    buyingPrice,
+                    sellingPrice,
+                    sellingDate
+                };
+
+                // The Fetch API request and response handling here
+                try {
+            const response = await fetch('http://localhost:3000/sells/add-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('Product added successfully!');
+                productForm.reset();
+            } else {
+                alert('Failed to add product. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+            });
+        });
       
-      registerForm.reset();
-    } else {
-      alert('Failed to register admin!');
-    }
-  }
-  );
-</script>
-
+    </script>
 </body>
+
 </html>
