@@ -1,158 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Product</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(236, 9, 9, 0.966);
+    width: 600px;
+    animation: fadeIn 1s;
+  }
 
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-        .form-container {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+  .form-group {
+    margin-bottom: 20px;
+  }
 
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
+  label {
+    display: block;
+    font-weight: bold;
+  }
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
-        input:focus,
-        textarea:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Add Product</h1>
-        </div>
-        <div class="form-container">
-            <form id="productForm">
-                <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="productName" required>
-
-                <label for="productDescription">Product Description</label>
-                <textarea id="productDescription" name="productDescription" required></textarea>
-
-                <label for="productPrice">Product Price</label>
-                <input type="number" id="productPrice" name="productPrice" required>
-
-                <label for="productQuantity">Product Quantity</label>
-                <input type="number" id="productQuantity" name="productQuantity" required>
-
-                <label for="buyingPrice">Buying Price</label>
-                <input type="number" id="buyingPrice" name="buyingPrice" required>
-
-                <label for="sellingPrice">Selling Price</label>
-                <input type="number" id="sellingPrice" name="sellingPrice" required>
-
-                <label for="sellingDate">Selling Date</label>
-                <input type="date" id="sellingDate" name="sellingDate" required>
-
-                <button type="submit">Add Product</button>
-            </form>
-        </div>
+<div class="container">
+  <h1>Create New Product</h1>
+  <form id="productForm">
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" name="productName" required>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const productForm = document.getElementById('productForm');
+    <div class="form-group">
+      <label for="productDescription">Product Description</label>
+      <textarea id="productDescription" name="productDescription" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="productPrice">Product Price</label>
+      <input type="number" id="productPrice" name="productPrice" required>
+    </div>
+    <div class="form-group">
+      <label for="productCategory">Product Category</label>
+      <input type="text" id="productCategory" name="productCategory" required>
+    </div>
+    <div class="form-group">
+      <label for="productQuantity">Product Quantity</label>
+      <input type="number" id="productQuantity" name="productQuantity" required>
+    </div>
+    <div class="form-group">
+      <label for="productStatus">Product Status</label>
+      <input type="text" id="productStatus" name="productStatus" required>
+    </div>
+    <div class="form-group">
+      <label for="productRating">Product Rating</label>
+      <input type="number" id="productRating" name="productRating" required>
+    </div>
+    <div class="form-group">
+      <label for="productReview">Product Review</label>
+      <textarea id="productReview" name="productReview" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="buyingPrice">Buying Price</label>
+      <input type="number" id="buyingPrice" name="buyingPrice" required>
+    </div>
+    <div class="form-group">
+      <label for="buyingDate">Product Image URL</label>
+      <input type="text" id="ProductImage" name="ProductImage" required>
+    </div>
+    <div class="form-group">
+        <label for="ProductImage">Buying Date\</label>
+        <input type="datetime-local" id="buyingDate" name="buyingDate" required>
+      </div>
+    <div class="form-group">
+      <label for="stocks">Stocks</label>
+      <input type="number" id="stocks" name="stocks" required>
+    </div>
 
-            productForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
+    <button type="button" id="submitButton">Create Product</button>
+  </form>
+</div>
 
-                const productName = document.getElementById('productName').value;
-                const productDescription = document.getElementById('productDescription').value;
-                const productPrice = document.getElementById('productPrice').value;
-                const productQuantity = document.getElementById('productQuantity').value;
-                const buyingPrice = document.getElementById('buyingPrice').value;
-                const sellingPrice = document.getElementById('sellingPrice').value;
-                const sellingDate = document.getElementById('sellingDate').value;
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const submitButton = document.getElementById("submitButton");
+    const productForm = document.getElementById("productForm");
 
-                const payload = {
-                    productName,
-                    productDescription,
-                    productPrice,
-                    productQuantity,
-                    buyingPrice,
-                    sellingPrice,
-                    sellingDate
-                };
+    submitButton.addEventListener("click", async () => {
+      const payload = {
+        "ProductName": document.getElementById("productName").value,
+        "ProductDescription": document.getElementById("productDescription").value,
+        "ProductPrice": parseFloat(document.getElementById("productPrice").value),
+        "ProductCategory": document.getElementById("productCategory").value,
+        "ProductQuantity": parseInt(document.getElementById("productQuantity").value),
+        "ProductStatus": document.getElementById("productStatus").value,
+        "ProductRating": parseInt(document.getElementById("productRating").value),
+        "ProductReview": document.getElementById("productReview").value,
+        "Buyingrice": parseFloat(document.getElementById("buyingPrice").value),
+        "BuyingDate": document.getElementById("buyingDate").value,
+        "Stocks": parseInt(document.getElementById("stocks").value),
+        "ProductImage": document.getElementById("ProductImage").value
+      };
 
-                // The Fetch API request and response handling here
-                try {
-            const response = await fetch('http://localhost:3000/sells/add-product', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+      const response = await fetch("http://localhost:3000/Product/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify([payload])
+      });
 
-            if (response.ok) {
-                alert('Product added successfully!');
-                productForm.reset();
-            } else {
-                alert('Failed to add product. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
-        }
-            });
-        });
-      
-    </script>
+      if (response.ok) {
+        alert("Product created successfully!");
+        productForm.reset();
+      } else {
+        alert("Failed to create product.");
+      }
+    });
+  });
+</script>
 </body>
-
 </html>

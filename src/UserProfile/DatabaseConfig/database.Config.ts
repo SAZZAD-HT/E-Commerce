@@ -28,6 +28,7 @@ import { SellsEntity } from '../Entity/selltable';
 import { ProfitEntity } from '../Entity/ProfitTable';
 import { SelsController } from '../sellsController';
 import { SellService } from '../Services/SellService';
+import { SlideShowEntity } from '../Entity/Slideshow';
 @Module({
 	imports:[
 	TypeOrmModule.forRoot({
@@ -40,7 +41,7 @@ import { SellService } from '../Services/SellService';
         //entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
         autoLoadEntities: true,
         synchronize: true,
-	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic,SellsEntity,ProfitEntity])
+	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic,SellsEntity,ProfitEntity,SlideShowEntity])
 	],
   providers: [AdminService,ProductService,AuthGuard,CartService,CustomerService,MechanicService,SellService],
   controllers: [AdminController,ProductController,CartController,EController,MechanicController,SelsController],

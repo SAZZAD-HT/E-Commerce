@@ -12,7 +12,7 @@ export class ProductEntity {
     ProductDescription:string
     @Column()
     ProductPrice:number
-    @Column()
+    @Column({ length: 10000 }) 
     ProductImage:string
     @Column()
     ProductCategory:string

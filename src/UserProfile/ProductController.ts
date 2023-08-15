@@ -4,6 +4,7 @@ import { AdminService } from './Services/AdminService';
 import { ProductService } from './Services/Product.Services';
 import { ProductEntity } from './Entity/Product.Entity';
 import { ProductDto } from './Dto/Product.Dto';
+import { SlideShowDto } from './Dto/SlideShowDto';
 
 
 @Controller('Product')
@@ -17,6 +18,10 @@ export class  ProductController {
         return await this.AdminService.findAll();
     }
     
+    @Post('/create')
+    async create(@Body()  ProductEntity:  ProductDto): Promise< ProductEntity> {
+        return await this.AdminService.create( ProductEntity);
+    }
    
     
  
@@ -24,7 +29,7 @@ export class  ProductController {
 
     
     @Put('/update/:id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body()  ProductEntity:  ProductEntity): Promise<void> {
+    async update(@Param('id', ParseIntPipe) id: number, @Body()  ProductEntity:  ProductDto){
         await this.AdminService.update(id,  ProductEntity);
     }
     
@@ -32,6 +37,18 @@ export class  ProductController {
     async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
         console.log("delete"+id);
         await this.AdminService.delete(id);
+    } 
+    
+
+    @Get('/get/Slideshow')
+    async getSlideshow() {
+
+        return await this.AdminService.findSlideShow();
+    }
+    @Post('/create/Slideshow')
+    async createSlideshow(@Body()  slideShowDto:SlideShowDto) {
+        
+        return await this.AdminService.createSlideShow( slideShowDto);
     }
 
    

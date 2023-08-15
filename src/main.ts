@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 // somewhere in your initialization file
-
+const port = process.env.PORT || 3000;
 async function bootstrap() {
   
   const app = await NestFactory.create(AppModule);
@@ -20,6 +20,6 @@ async function bootstrap() {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow the necessary headers
     next();
   }); // Add this line
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
