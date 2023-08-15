@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class tblMechanic{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("identity")
     MechanicId: number;
     @Column()
     MechanicName: string;
@@ -15,4 +15,11 @@ export class tblMechanic{
     ActiveHours: string;    
     @Column()
     IsActive: string;
+    @Column()
+    MobileNumber: string;
+    @Column()
+    latitude: string;
+    @Column()
+    longitude: string;
+
 }

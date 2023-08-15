@@ -76,7 +76,8 @@
     </footer>
     <script >
        document.addEventListener("DOMContentLoaded", () => {
-    fetch("http://localhost:3000/sells/products")
+    //fetch("https://sazzad.adaptable.app/sells/products")
+   fetch("http://localhost:3000/sells/products")
         .then((response) => response.json())
         .then((data) => displayProducts(data))
         .catch((error) => console.error(error));
@@ -87,7 +88,7 @@
         products.forEach((product) => {
             const productDiv = document.createElement("div");
             productDiv.classList.add("product");
-            productDiv.dataset.productId = product.buied; // Store buied as a data attribute
+            productDiv.dataset.productId = product.ProductId; // Store buied as a data attribute
 
             const productImage = document.createElement("img");
             productImage.src = product.ProductImage;
@@ -119,7 +120,7 @@
     }
 
     function handleProductClick(product) {
-        const productId = product.buied;
+        const productId = product.ProductId;
         const productName = product.ProductName;
         const productPrice = product.ProductPrice;
         const productQuantity = product.ProductQuantity;
@@ -130,6 +131,8 @@
             ProductPrice: productPrice,
             ProductQuantity: productQuantity
         };
+        confirm("Are you sure you want to sell this product?");
+        console.log(sellData);
 
         fetch("http://localhost:3000/sells/sell", {
             method: "POST",

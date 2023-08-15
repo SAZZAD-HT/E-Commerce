@@ -61,17 +61,26 @@ export class SellService {
     }
 
     async sellproduct(sell:SellsDto) {
+      try{ 
+         console.log(sell);
+
         var product = await this.product.findOne({ where: { ProductId: sell.ProductId } });
-        console.log(product);
-        if (product==null) {
+        console.log("debugger");
+        if(sell.ProductName!=product.ProductName){
             throw new NotFoundException("Product not found");
         }
+        console.log(product.ProductName);
+        // if (product==null) {
+        //     console.log("debugger");
+        //     throw new NotFoundException("Product not found");
+            
+        // }
         if (product.ProductQuantity < sell.ProductQuantity) {
             throw new BadRequestException("Product Quantity not available");
         }
         var sellproduct = new SellsDto();
       
-        sellproduct.ProductId = product.ProductId;
+        sellproduct.SellId= product.ProductId;
         sellproduct.ProductName = product.ProductName;
         sellproduct.ProductDescription = product.ProductDescription;
         sellproduct.ProductPrice = product.ProductPrice;
@@ -86,23 +95,54 @@ export class SellService {
         await this.sell.save(sellproduct);
 
         product.ProductQuantity = product.ProductQuantity - sell.ProductQuantity;
+        if(product.ProductQuantity==0)
+        {
+            product.ProductStatus="Out of Stock";
+        }
         await this.product.save(product);
-      
+
+        var profit1 = await this.profit.findOne({ where: { ProductId: sell.ProductId } });
+        console.log(profit1);
+        if(profit1!=null){
+            console.log("debuggerprofit");
+            var lop =sell.ProductPrice - product.ProductPrice
+            console.log(sell.ProductPrice,product.ProductPrice,lop);
+            if(lop<0){
+                profit1.Profit=profit1.Profit- lop;
+                if(profit1.Profit<0){
+                    profit1.ProfitorLoss="Loss"
+                }
+
+            }
+
+            profit1.Profit=profit1.Profit+ lop;
+            if(profit1.Profit>0){
+                profit1.ProfitorLoss="Profit"
+            }
+
+        }else{
         var profit = new ProfitDto();
         profit.ProductId = product.ProductId;
         profit.ProductName = product.ProductName;
         profit.Buydate = product.BuyingDate;
         profit.sellDate = new Date();
-        profit.Profit = sell.ProductPrice - product.ProductPrice;
-        if(profit.Profit<0)
+        var Profit = sell.ProductPrice - product.ProductPrice;
+        
+        profit.Profit = Profit;
+        if(Profit<0)
         {
             profit.ProfitorLoss="Loss"
         }
         else{
             profit.ProfitorLoss="Profit"
-        }
+        }}
 
-        await this.profit.save(profit);
+        await this.profit.save(profit);}
+        catch(e){console.log(e);
+            
+            return e;
+            
+        }
       
 }
 
@@ -131,6 +171,16 @@ async addproduct(product:ProductDto) {
     async getpurchasebydate(date:Date) {
         var data = await this.product.find({ where: { BuyingDate: date } });
         return data;
+    }
+    async getTotalProducts(){
+        var data = await this.product.find();
+        const count = data.length;
+        return count;
+    }
+    async getTotalCustomers(){
+        var data = await this.profit.find();
+        const count = data.length;
+        return count;
     }
 
 }

@@ -2,6 +2,7 @@
 export class SellsDto {
 
     ProductId: number;
+    SellId: number;
      
     ProductName:string
      

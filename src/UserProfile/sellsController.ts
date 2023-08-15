@@ -72,6 +72,15 @@ export class SelsController {
   async totalLoss1() {
     return this.adminService.totalLoss();
   }
+  @Get('/total-products')
+  async totalProducts() {
+    return this.adminService.getTotalProducts();
+  }
+  @Get('/total-Customer')
+  async totalCustomer() {
+    return this.adminService.getTotalCustomers();
+  }
+
  
     
 }

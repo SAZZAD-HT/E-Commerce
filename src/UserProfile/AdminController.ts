@@ -5,6 +5,7 @@ import { User } from './Entity/Admin';
 import * as session from 'express-session';
 import {Request,Response} from 'express';
 import { AuthGuard } from './Authgourd/AuthGurd';
+import { hashPassword } from './Services/Hash';
 
 
 @Controller('user')
@@ -26,7 +27,10 @@ export class AdminController {
     
     @Post('/create')
     async create(@Body() user: AddUserDto): Promise<User> {
+      var deptPassword =  await hashPassword(user.UserPassword);
         console.log("Controller"+user);
+        console.log(deptPassword);
+        user.UserPassword = deptPassword;
         return await this.AdminService.create(user);
     }
 

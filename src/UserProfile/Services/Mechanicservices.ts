@@ -35,6 +35,17 @@ export class MechanicService {
     async find(MechanicId: number): Promise<tblMechanic> {
         return await this.repo.findOneBy({ MechanicId});
     }
+    async findName(MechanicId: number,Name:MechanicDTO) {
+        var data= await this.repo.findOneBy({ MechanicId});
+        if(data!= null){
+            return data;
+            
+        }
+       
+
+       
+        return await this.repo.findOneBy({ MechanicName:Name.MechanicName});
+    }
     async findByCity(city: MechanicDTO): Promise<tblMechanic[]> {
       var data = await this.repo.find({ where: { City: city.City } });
       console.log(data);

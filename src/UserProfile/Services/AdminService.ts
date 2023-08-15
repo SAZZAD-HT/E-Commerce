@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AddUserDto, UpdateUserDto } from '../Dto/Admindd';
 import { User } from '../Entity/Admin';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminService {
@@ -50,6 +51,7 @@ export class AdminService {
             console.log("User not found");
             throw new NotFoundException('User not found');
         }
+        const passwordMatch = await bcrypt.compare(password, user.UserPassword);
         if (user.UserPassword !== password) {
             
             console.log("Invalid password");

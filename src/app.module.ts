@@ -15,3 +15,4 @@ import { DatabaseModulemosque } from './UserProfile/DatabaseConfig/database.Conf
   providers: [],
 })
 export class AppModule {}
+

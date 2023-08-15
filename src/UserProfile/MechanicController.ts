@@ -13,9 +13,14 @@ export class MechanicController {
     return this.mechanicService.findAll();
   }
 
-  @Get('/:id')
-  async find(@Param('id') MechanicId: number): Promise<tblMechanic> {
-    return this.mechanicService.find(MechanicId);
+  // @Get('/:id')
+  // async find(@Param('id') MechanicId: number): Promise<tblMechanic> {
+  //   return this.mechanicService.find(MechanicId);
+  // }
+  @Post('/get/:id')
+  async findName(@Param('id') MechanicId: number, @Body() mechanicDTO: MechanicDTO): Promise<tblMechanic> {
+    console.log("id",mechanicDTO);
+    return this.mechanicService.findName(MechanicId, mechanicDTO);
   }
 
   

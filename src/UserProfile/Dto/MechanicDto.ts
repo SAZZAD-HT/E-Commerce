@@ -12,4 +12,9 @@ export class MechanicDTO{
     ActiveHours: string;    
 
     IsActive: string;
+    MobileNumber: string;
+    
+    latitude: string;
+    
+    longitude: string;
 }

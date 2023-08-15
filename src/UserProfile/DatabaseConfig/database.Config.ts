@@ -33,13 +33,14 @@ import { SlideShowEntity } from '../Entity/Slideshow';
 	imports:[
 	TypeOrmModule.forRoot({
       type: 'postgres',
+      //urlfor online
       url: process.env.DATABASE_URL,
         // host: 'localhost',
         // port: 3306,
         // username: 'root',
         // password: 'sazzad',
         // database: 'final',
-        //entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
+       // entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
         autoLoadEntities: true,
         synchronize: true,
 	}),TypeOrmModule.forFeature([User,ProductEntity,tblItem,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails,tblMechanic,SellsEntity,ProfitEntity,SlideShowEntity])
