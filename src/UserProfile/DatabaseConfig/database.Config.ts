@@ -32,14 +32,14 @@ import { SlideShowEntity } from '../Entity/Slideshow';
 @Module({
 	imports:[
 	TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       //urlfor online
-      //url: process.env.DATABASE_URL,
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: 'sazzad',
-        database: 'final',
+      url: process.env.DATABASE_URL,
+        // host: 'localhost',
+        // port: 3306,
+        // username: 'root',
+        // password: 'sazzad',
+        // database: 'final',
        // entities: [User,ProductEntity,tblItem,,tblPartner,tblPartnerType,tblPurchase,tblPurchaseDetails,tblSales,tblSalesDetails],
         autoLoadEntities: true,
         synchronize: true,

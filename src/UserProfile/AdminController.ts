@@ -5,7 +5,8 @@ import { User } from './Entity/Admin';
 import * as session from 'express-session';
 import {Request,Response} from 'express';
 import { AuthGuard } from './Authgourd/AuthGurd';
-import { hashPassword } from './Services/Hash';
+import * as bcrypt from 'bcrypt';
+
 
 
 @Controller('user')
@@ -27,7 +28,8 @@ export class AdminController {
     
     @Post('/create')
     async create(@Body() user: AddUserDto): Promise<User> {
-      var deptPassword =  await hashPassword(user.UserPassword,10);
+    
+        var deptPassword= bcrypt.hash(user.UserPassword,10);
         console.log("Controller"+user);
         console.log(deptPassword);
         user.UserPassword = deptPassword;
@@ -85,3 +87,7 @@ export class AdminController {
 
 
     
+function hashPassword(UserPassword: string, arg1: number) {
+  throw new Error('Function not implemented.');
+}
+
