@@ -1,11 +1,10 @@
-import { ConsoleLogger } from '@nestjs/common';
-import * as bycrpt from 'bcrypt';
+import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
-
-export async function hashPassword(password: string){
-    console.log('password', password);
-    const salt = await bycrpt.genSalt(10);
-    return await bycrpt.hash(password, 10);
-
-
+@Injectable()
+export class AuthService {
+  async hashPassword(password: string): Promise<string> {
+    const saltRounds = 10; // Number of salt rounds for bcrypt
+    return bcrypt.hash(password, saltRounds);
+  }
 }

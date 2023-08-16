@@ -27,7 +27,7 @@ export class AdminController {
     
     @Post('/create')
     async create(@Body() user: AddUserDto): Promise<User> {
-      var deptPassword =  await hashPassword(user.UserPassword);
+      var deptPassword =  await hashPassword(user.UserPassword,10);
         console.log("Controller"+user);
         console.log(deptPassword);
         user.UserPassword = deptPassword;
