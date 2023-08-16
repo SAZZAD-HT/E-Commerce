@@ -17,6 +17,7 @@ export class SelsController {
 
   @Get('/sells')
   async findAllSells(): Promise<SellsEntity[]> {
+    console.log("xdf")
     return this.adminService.findAllSelled();
   }
 

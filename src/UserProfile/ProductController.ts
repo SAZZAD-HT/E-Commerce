@@ -19,8 +19,8 @@ export class  ProductController {
     }
     
     @Post('/create')
-    async create(@Body()  ProductEntity:  ProductDto): Promise< ProductEntity> {
-        return await this.AdminService.create( ProductEntity);
+    async create(@Body()  Product:  ProductDto): Promise< ProductEntity> {
+        return await this.AdminService.create( Product);
     }
    
     
