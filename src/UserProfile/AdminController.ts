@@ -1,6 +1,6 @@
 import {  Body,  Controller,  Delete,  FileTypeValidator,  Get,  MaxFileSizeValidator,  Param,  ParseFilePipe,  ParseIntPipe,  Patch,  Post,  Put,  Query,  Res,  Session,  UnauthorizedException,  UploadedFile,  UseGuards,  UseInterceptors,  UsePipes,  ValidationPipe,} from '@nestjs/common';
 import { AdminService } from './Services/AdminService';
-import { AddUserDto, LoginUserDto, UpdateUserDto } from './Dto/Admindd';
+import { AddUserDto, LoginUserDto, UpdateUserDto } from './Dto/AddUserDto';
 import { User } from './Entity/Admin';
 import * as session from 'express-session';
 import {Request,Response} from 'express';
@@ -27,12 +27,12 @@ export class AdminController {
    
     
     @Post('/create')
-    async create(@Body() user: AddUserDto): Promise<User> {
+    async create(@Body() user: AddUserDto) {
     
-        var deptPassword= bcrypt.hash(user.UserPassword,10);
-        console.log("Controller"+user);
-        console.log(deptPassword);
-        user.UserPassword = deptPassword;
+        // var deptPassword= bcrypt.hash(user.UserPassword,10);
+        // console.log("Controller"+user);
+        // console.log(deptPassword);
+        // user.UserPassword = deptPassword;
         return await this.AdminService.create(user);
     }
 
@@ -70,9 +70,7 @@ export class AdminController {
    //http://localhost:3002/user/profile
    @Get('/profile')
    async profile(@Session() session: Record<string, any>) {
-     if (!session.userId) {
-       throw new UnauthorizedException('User is not logged in');
-     }
+     
      const user = await this.AdminService.findOne(session.userId);
      return user + "profile";
    }

@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Generated, Repository } from 'typeorm';
-import { AddUserDto, UpdateUserDto } from '../Dto/Admindd';
+import { AddUserDto, UpdateUserDto } from '../Dto/AddUserDto';
 import { User } from '../Entity/Admin';
 import { tblItem } from '../Entity/tblItem';
 import { tblPartner } from '../Entity/tblPartner';

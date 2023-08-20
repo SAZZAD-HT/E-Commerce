@@ -1,5 +1,5 @@
 import{Controller,Post,Request,UseGuards,Get,Body,Param,Delete,Put,ParseIntPipe,    Session} from '@nestjs/common';
-import { LoginUserDto } from './Dto/Admindd';
+import { LoginUserDto } from './Dto/AddUserDto';
 import { AuthService } from './Services/Login.service';
 import { AdminService } from './Services/AdminService';
 

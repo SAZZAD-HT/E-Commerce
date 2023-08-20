@@ -4,38 +4,22 @@ export class AddUserDto {
 
 @IsNumber()
     userId: number; 
-    @IsNotEmpty()
-    @MaxLength(530)
-    @MinLength(33)
-    UserName: string;
 
-    
-    
-    @IsEmail()
+    UserName: string;
+ 
     UserEmail: string;
 
-  
-    @MaxLength(50)
-    @MinLength(3)
     UserPassword: string;
 
-    @MaxLength(50)
-    @MinLength(3)
     Contact: string;
 
-   
-    @MaxLength(50)
-    @MinLength(3)
     Role: string;
 
-  
-    @MaxLength(50)
-    @MinLength(3)
     Status: string;
-
-    Description:string
-    @IsNumber()
-    MobileNumber:Number
+    Description:string;
+   
+    MobileNumber:Number;
+    Address:string
 }
 
 export class LoginUserDto {

@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
-import { AddUserDto, UpdateUserDto } from '../Dto/Admindd';
+import { AddUserDto, UpdateUserDto } from '../Dto/AddUserDto';
 import { User } from '../Entity/Admin';
 import * as bcrypt from 'bcrypt';
 
@@ -31,7 +31,8 @@ export class AdminService {
 
    
 
-    async create(user: AddUserDto): Promise<User> {
+    async create(user: AddUserDto) {
+        console.log("Service"+user.UserPassword);
         return await this.repo.save(user);
     }
     
@@ -51,12 +52,12 @@ export class AdminService {
             console.log("User not found");
             throw new NotFoundException('User not found');
         }
-        const passwordMatch = await bcrypt.compare(password, user.UserPassword);
-        if (user.UserPassword !== password) {
+        // const passwordMatch = await bcrypt.compare(password, user.UserPassword);
+        // if (user.UserPassword !== password) {
             
-            console.log("Invalid password");
-            throw new BadRequestException('Invalid password');
-        }
+        //     console.log("Invalid password");
+        //     throw new BadRequestException('Invalid password');
+        // }
         if(user.Role=="admin"){
             
             

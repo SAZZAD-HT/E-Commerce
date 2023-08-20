@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn()
   UserId: number;
 
   @Column()
@@ -27,6 +27,8 @@ export class User {
     Description:string
     @Column()
     MobileNumber:Number
+    @Column()
+   Address:string
 
   
 }

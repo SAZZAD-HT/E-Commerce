@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AddUserDto, UpdateUserDto } from '../Dto/Admindd';
+import { AddUserDto, UpdateUserDto } from '../Dto/AddUserDto';
 import { User } from '../Entity/Admin';
 import { ProductEntity } from '../Entity/Product.Entity';
 import { SellsEntity } from '../Entity/selltable';
@@ -9,6 +9,9 @@ import { ProfitEntity } from '../Entity/ProfitTable';
 import { SellsDto } from '../Dto/SellsDto';
 import { ProductDto } from '../Dto/Product.Dto';
 import { ProfitDto } from '../Dto/ProfitDto';
+import { randomInt } from 'crypto';
+import { min } from 'class-validator/types/decorator/number/Min';
+import { max } from 'class-validator/types/decorator/number/Max';
 
 @Injectable()
 export class SellService {
@@ -29,8 +32,9 @@ export class SellService {
         var data = await this.sell.find();
         return data;
     }
-    async findAllProfits(): Promise<ProfitEntity[]> {
+    async findAllProfits() {
         var data = await this.profit.find();
+    
         return data;
     }
     async CountTotalProduct(): Promise<number> {
@@ -100,7 +104,7 @@ export class SellService {
             product.ProductStatus="Out of Stock";
         }
         await this.product.save(product);
-
+      
         var profit1 = await this.profit.findOne({ where: { ProductId: sell.ProductId } });
         console.log(profit1);
         if(profit1!=null){
@@ -110,14 +114,34 @@ export class SellService {
             if(lop<0){
                 profit1.Profit=profit1.Profit- lop;
                 if(profit1.Profit<0){
-                    profit1.ProfitorLoss="Loss"
+                    profit1.ProfitorLoss="Loss";
+                    profit1.Profit=400;
+                 var profit2 = await this.profit.findOne({ where: { Profit: profit1.Profit } });
+                    if(profit2.Profit< 400){
+                        profit2.Profit= 400+90;
+
+                    }else if(profit2.Profit< 490){
+                        profit2.Profit= 490+90;
+                    }else if(profit2.Profit< 580){
+                        profit2.Profit= 580+90;}
+
                 }
 
             }
 
             profit1.Profit=profit1.Profit+ lop;
             if(profit1.Profit>0){
-                profit1.ProfitorLoss="Profit"
+                profit1.ProfitorLoss="Profit";
+                profit1.Profit=5500;
+                var profit2 = await this.profit.findOne({ where: { Profit: profit1.Profit } });
+                    if(profit2.Profit< 500){
+                        profit2.Profit= 500+950;
+
+                    }else if(profit2.Profit< 490){
+                        profit2.Profit= 490+950;
+                    }else if(profit2.Profit< 580){
+                        profit2.Profit= 580+950;}
+
             }
 
         }else{
